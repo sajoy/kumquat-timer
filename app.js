@@ -33,8 +33,7 @@ Timer.prototype.save = function () {
 }
 
 Timer.prototype.start = function () {
-    
-    console.log( 'Timer is starting!' );
+    console.log( this.name , 'Timer is starting!' );
     console.time( 'timer' );
     var readableMinutes =  this.minutes;
     
@@ -60,7 +59,9 @@ var timersUl = document.getElementById( 'timers' );
 if ( localStorage.timers ) {
     var timers = JSON.parse( localStorage.timers );
     timers.forEach( function ( timer ) {
-        Timer.all.push( new Timer( timer.name, timer.length ) );
+        var timerObj = new Timer( timer.name, timer.length )
+        Timer.all.push( timerObj );
+
        
         var li = document.createElement( 'li' );
 
@@ -71,6 +72,11 @@ if ( localStorage.timers ) {
         startBtn.setAttribute( 'type', 'submit' );
         startBtn.innerHTML = 'Start';
 
+        startBtn.addEventListener( 'click', function () {
+            timerObj.start();
+        });
+
+        
         li.appendChild( nameHeader );
         li.appendChild( startBtn );
         timersUl.appendChild( li );
