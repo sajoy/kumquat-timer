@@ -33,16 +33,37 @@ Timer.prototype.save = function () {
 }
 
 Timer.prototype.start = function () {
+
+    this.countdown();
+
     console.log( this.name , 'Timer is starting!' );
     console.time( 'timer' );
     var readableMinutes =  this.minutes;
     
-    setTimeout( function () {
+    this.running = setTimeout( function () {
         console.log( 'Timer is ending!' );
         console.timeEnd( 'timer' );
         alert('It has been ' + readableMinutes + ' minute(s).');
     }, this.length );
+}
 
+Timer.prototype.countdown = function () {
+    var modal = document.getElementById( 'modal' );
+    modal.classList.add( 'show' );
+
+    this.currentTime = setInterval( function () {
+        console.log( 'interval logging' );
+    }, 1000 );
+
+    modal.innerHTML = this.minutes + ':00';
+}
+
+Timer.prototype.cancel = function () {
+    var modal = document.getElementById( 'modal' );
+    modal.classList.remove( 'show' );
+
+    clearInterval( this.currentTime );
+    clearTimeout( this.running );
 }
 
 function randomInt (min, max) {
@@ -92,3 +113,6 @@ form.addEventListener( 'submit', function ( event ) {
     var timer = new Timer( name, length );
     timer.save();
 });
+
+
+// TODO add close modal and cancel timer
