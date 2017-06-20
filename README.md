@@ -7,7 +7,8 @@
 - [x] Save timers to LocalStorage.
 - [x] Print localStorage timers to the DOM.
 - [x] Add modal.
-- [] Show clock counting down the seconds.
+- [x] Show clock counting down the seconds.
+- [x] Allow user to set a temporary focus.
 - [] Disallow multiple timers to run simultaneously.
 - [] Allow user to name the timer.
 

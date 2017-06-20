@@ -2,35 +2,23 @@
 
 function Timer ( name, length ) {
     this.name = name || this.randomName();
-    // this.length = length;
     this.minutes = length / 60000;
     this.totalSeconds = length / 1000;
-
-    console.log( 'made a new timer, fancy', this );
 }
 
 Timer.all = [];
 Timer.current = null;
 
-Timer.prototype.modal = document.getElementById( 'modal' );
 Timer.prototype.clock = document.getElementById( 'countdown' );
 
 Timer.prototype.randomName = function () {
-    var words = [
-        'art',
-        'bee',
-        'corner',
-        'danger',
-        'eagle',
-        'frequent',
-        'glue',
-        'happy',
-        'monkey'
-    ];
+    var words = ['art', 'bee', 'corner', 'danger', 'eagle',
+        'frequent', 'glue', 'happy', 'monkey'];
 
     var max = words.length - 1;
-    return words[randomInt(0, max)] + '-' + words[randomInt(0, max)] 
-           + '-' + words[randomInt(0, max)];
+    return words[randomInt(0, max)] + '-' 
+           + words[randomInt(0, max)] + '-' 
+           + words[randomInt(0, max)];
 }
 
 Timer.prototype.save = function () {
@@ -40,23 +28,25 @@ Timer.prototype.save = function () {
 
 Timer.prototype.start = function () {
     console.log( this.name , ' is starting!' );
-    this.clock.innerHTML = '<span id="minutes">' + twoPlaces( this.minutes.toString() ) + 
-                               '</span>:<span>' + '00' + '</span>';
-    Timer.current = this;
+
+    this.clock.innerHTML = '<span id="minutes">' 
+                           + twoPlaces( this.minutes.toString() )
+                           + '</span>:<span>' + '00' + '</span>';
+    
     this.countdown();
+    Timer.current = this;
 }
 
 Timer.prototype.countdown = function () {
-    var mins = this.minutes;
-    var runTime = this.totalSeconds;
-    var clock = this.clock;
+    var currentTimer = this;
+    var runTime = currentTimer.totalSeconds;
+    var clock = currentTimer.clock;
 
     this.currentTime = setInterval( function () {
-        console.log( runTime );
-        if ( runTime === 0 ) { Timer.current.stop(); }
-        mins = Math.floor( runTime/60 );
+        if ( runTime === 0 ) { currentTimer.stop(); }
+
+        var mins = Math.floor( runTime/60 );
         var seconds = runTime%60;
-        
         var secondsString = seconds === 60 ? '00' : twoPlaces( seconds.toString() );
         var minutesString = twoPlaces( mins.toString() );
 
@@ -68,9 +58,10 @@ Timer.prototype.countdown = function () {
 }
 
 Timer.prototype.stop = function () {
+    console.log( this.name , ' is over!' );
+
     Timer.current = null;
     clearInterval( this.currentTime );
-    clearTimeout( this.running );
 }
 
 function randomInt (min, max) {
@@ -128,6 +119,7 @@ var modalCloseBtn = document.getElementById( 'close-modal' );
 modalCloseBtn.addEventListener( 'click', function ( event ) {
     document.getElementById( 'modal' ).classList.remove( 'show' );
     document.getElementById( 'countdown' ).innerHTML = '';
+
     if ( Timer.current ) { 
         Timer.current.stop();
     }
