@@ -2,13 +2,18 @@
 
 function Timer ( name, length ) {
     this.name = name || this.randomName();
-    this.length = length;
-    this.minutes = length/60000;
+    // this.length = length;
+    this.minutes = length / 60000;
+    this.totalSeconds = length / 1000;
 
     console.log( 'made a new timer, fancy', this );
 }
 
 Timer.all = [];
+Timer.current = null;
+
+Timer.prototype.modal = document.getElementById( 'modal' );
+Timer.prototype.clock = document.getElementById( 'countdown' );
 
 Timer.prototype.randomName = function () {
     var words = [
@@ -24,7 +29,8 @@ Timer.prototype.randomName = function () {
     ];
 
     var max = words.length - 1;
-    return words[randomInt(0, max)] + '-' + words[randomInt(0, max)] + '-' + words[randomInt(0, max)];
+    return words[randomInt(0, max)] + '-' + words[randomInt(0, max)] 
+           + '-' + words[randomInt(0, max)];
 }
 
 Timer.prototype.save = function () {
@@ -33,41 +39,46 @@ Timer.prototype.save = function () {
 }
 
 Timer.prototype.start = function () {
-
+    console.log( this.name , ' is starting!' );
+    this.clock.innerHTML = '<span id="minutes">' + twoPlaces( this.minutes.toString() ) + 
+                               '</span>:<span>' + '00' + '</span>';
+    Timer.current = this;
     this.countdown();
-
-    console.log( this.name , 'Timer is starting!' );
-    console.time( 'timer' );
-    var readableMinutes =  this.minutes;
-    
-    this.running = setTimeout( function () {
-        console.log( 'Timer is ending!' );
-        console.timeEnd( 'timer' );
-        alert('It has been ' + readableMinutes + ' minute(s).');
-    }, this.length );
 }
 
 Timer.prototype.countdown = function () {
-    var modal = document.getElementById( 'modal' );
-    modal.classList.add( 'show' );
+    var mins = this.minutes;
+    var runTime = this.totalSeconds;
+    var clock = this.clock;
 
     this.currentTime = setInterval( function () {
-        console.log( 'interval logging' );
-    }, 1000 );
+        console.log( runTime );
+        if ( runTime === 0 ) { Timer.current.stop(); }
+        mins = Math.floor( runTime/60 );
+        var seconds = runTime%60;
+        
+        var secondsString = seconds === 60 ? '00' : twoPlaces( seconds.toString() );
+        var minutesString = twoPlaces( mins.toString() );
 
-    modal.innerHTML = this.minutes + ':00';
+        clock.innerHTML = '<span id="minutes">' + minutesString + 
+                               '</span>:<span>' + secondsString + '</span>';
+
+        runTime = runTime - 1;
+    }, 1000 );
 }
 
-Timer.prototype.cancel = function () {
-    var modal = document.getElementById( 'modal' );
-    modal.classList.remove( 'show' );
-
+Timer.prototype.stop = function () {
+    Timer.current = null;
     clearInterval( this.currentTime );
     clearTimeout( this.running );
 }
 
 function randomInt (min, max) {
     return Math.floor( Math.random() * (max - min + 1) ) + min;
+}
+
+function twoPlaces ( numStr ) {
+    return numStr.length === 2 ? numStr : '0' + numStr;
 }
 
 
@@ -83,8 +94,7 @@ if ( localStorage.timers ) {
         var timerObj = new Timer( timer.name, timer.length )
         Timer.all.push( timerObj );
 
-       
-        var li = document.createElement( 'li' );
+        var timerLi = document.createElement( 'li' );
 
         var nameHeader = document.createElement( 'h2' );
         nameHeader.innerText = timer.name + ' (' + timer.minutes + ' minutes)';
@@ -95,12 +105,12 @@ if ( localStorage.timers ) {
 
         startBtn.addEventListener( 'click', function () {
             timerObj.start();
+            document.getElementById( 'modal' ).classList.add( 'show' );
         });
 
-        
-        li.appendChild( nameHeader );
-        li.appendChild( startBtn );
-        timersUl.appendChild( li );
+        timerLi.appendChild( nameHeader );
+        timerLi.appendChild( startBtn );
+        timersUl.appendChild( timerLi );
     });
 }
 
@@ -114,5 +124,11 @@ form.addEventListener( 'submit', function ( event ) {
     timer.save();
 });
 
-
-// TODO add close modal and cancel timer
+var modalCloseBtn = document.getElementById( 'close-modal' );
+modalCloseBtn.addEventListener( 'click', function ( event ) {
+    document.getElementById( 'modal' ).classList.remove( 'show' );
+    document.getElementById( 'countdown' ).innerHTML = '';
+    if ( Timer.current ) { 
+        Timer.current.stop();
+    }
+});
