@@ -47,6 +47,7 @@ Timer.prototype.countdown = function () {
 
         var mins = Math.floor( runTime/60 );
         var seconds = runTime%60;
+
         var secondsString = seconds === 60 ? '00' : twoPlaces( seconds.toString() );
         var minutesString = twoPlaces( mins.toString() );
 
@@ -59,7 +60,6 @@ Timer.prototype.countdown = function () {
 
 Timer.prototype.stop = function () {
     console.log( this.name , ' is over!' );
-
     Timer.current = null;
     clearInterval( this.currentTime );
 }
@@ -82,7 +82,7 @@ var timersUl = document.getElementById( 'timers' );
 if ( localStorage.timers ) {
     var timers = JSON.parse( localStorage.timers );
     timers.forEach( function ( timer ) {
-        var timerObj = new Timer( timer.name, timer.length )
+        var timerObj = new Timer( timer.name, timer.totalSeconds * 1000 )
         Timer.all.push( timerObj );
 
         var timerLi = document.createElement( 'li' );

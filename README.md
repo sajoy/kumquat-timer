@@ -9,12 +9,14 @@
 - [x] Add modal.
 - [x] Show clock counting down the seconds.
 - [x] Allow user to set a temporary focus.
-- [] Disallow multiple timers to run simultaneously.
+- [kindof] Disallow multiple timers to run simultaneously.
 - [] Allow user to name the timer.
 
 ### Stretch Goals
 - As a developer I want to use [EasyTimer.js](http://albert-gonzalez.github.io/easytimer.js/) library to do the countdown work.
 - As a user I want to delete a singular timer.
+- As a user I want to hear a sound when the timer is complete.
+- As a user I want to see the time remaining in the browser tab.
 
 ### User Stories
 - As a user I want to create a timer of a certain length. 
@@ -22,3 +24,4 @@
 - As a user I want to be able to cancel a timer.
 - As a user I want to be able to see all the timers I've saved.
 - As a user I want to name my timer.
+- As a user I want to be notified in some way when the timer is done.
