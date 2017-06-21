@@ -9,6 +9,13 @@ body {
     font-family: 'Inconsolata', monospace;
 }
 
+header h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
 button {
     border: none;
     padding: 20px;
@@ -34,9 +41,8 @@ fieldset {
 }
 
 input {
-    width: 100px;
+    width: 77px;
     border: none;
-    text-align: center;
 }
 
 input#minutes { text-align: right; }
@@ -69,7 +75,7 @@ input:active, input:focus {
 
 .clock {
     font-family: 'Space Mono', monospace;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: normal;
 }
 

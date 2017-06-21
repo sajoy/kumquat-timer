@@ -13,7 +13,7 @@
 - [] Allow user to name the timer.
 - [] Show timer on creation.
 - [] Stylin': mobile first and responsive
-    - [x landing page timer list
+    - [x] landing page timer list
 - [] Add empty state
 
 - [] Deal with edgecases:
@@ -25,6 +25,8 @@
 - As a user I want to delete a singular timer.
 - As a user I want to hear a sound when the timer is complete.
 - As a user I want to see the time remaining in the browser tab.
+- As a developer I want to check the remaining time against a Date object rather than using setInterval to change runTime for more accuracy.
+- As a developer I want to add an easter egg: when a user clicks the emoji in the header, something random should happen.
 
 ### User Stories
 - As a user I want to create a timer of a certain length. 
