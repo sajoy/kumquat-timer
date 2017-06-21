@@ -11,6 +11,14 @@
 - [x] Allow user to set a temporary focus.
 - [kindof] Disallow multiple timers to run simultaneously.
 - [] Allow user to name the timer.
+- [] Show timer on creation.
+- [] Stylin': mobile first and responsive
+    - [x landing page timer list
+- [] Add empty state
+
+- [] Deal with edgecases:
+    - [] 00:00 timer
+    - [] over 60:00 timer ? or over 100:00 timer
 
 ### Stretch Goals
 - As a developer I want to use [EasyTimer.js](http://albert-gonzalez.github.io/easytimer.js/) library to do the countdown work.

@@ -79,7 +79,10 @@ function twoPlaces ( num ) {
     return numStr.length === 2 ? numStr : '0' + numStr;
 }
 
-
+function randEmoji () {
+    var emojis = [ '🍉', '🥝', '🍍' ];
+    return emojis[randomInt(0,2)];
+}
 
 
 
@@ -95,12 +98,13 @@ if ( localStorage.timers ) {
         var timerLi = document.createElement( 'li' );
 
         var nameHeader = document.createElement( 'h2' );
-        nameHeader.innerText = timer.name + ' (' + twoPlaces( timer.minutes ) 
-                               + ':' + twoPlaces( timer.seconds ) + ')';
+        nameHeader.classList.add( 'clock' );
+        nameHeader.innerText = twoPlaces( timer.minutes ) + ':' + twoPlaces( timer.seconds );
 
         var startBtn = document.createElement( 'button' );
         startBtn.setAttribute( 'type', 'submit' );
-        startBtn.innerHTML = 'Start';
+        startBtn.setAttribute( 'title', 'start timer' );
+        startBtn.innerHTML = randEmoji();
 
         startBtn.addEventListener( 'click', function () {
             timerObj.start();
