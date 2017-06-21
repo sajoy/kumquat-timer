@@ -1,5 +1,33 @@
 # Kumquat Timer
 
+// TODOs
+- update README to have contributing instructions
+    - instructions on getting to know the code
+    - better outline possible new features
+    - outline fork/edit/pr process
+    - outline requirements to be considered for PR
+- add forks.md file for a list of forks
+- about page: about me/codefellowspdx/purpose of project
+- add assets:
+    - sounds (3-5 sounds)
+    - links to gifs
+- build out user stories more
+
+## About
+
+## Contributing
+1. Fork it!
+2. Add your version to our [forked]() file with the following:
+    - link to code
+    - link to live version
+    - list of what features you added/bugs you fixed/things you changed
+3. Your code will most likely **not** be merged here, since this repo's purpose is to be example/exercise code. But we want to see what updates you do regardless!
+    - If you think you have something we really should consider merging, make a pull request with your reasons.
+    - Note: code should be at an introductory level:
+        - Only Vanilla JS DOM manipulation.
+        - Minimal use of other libraries.
+        - None to minimal use of ES2015 features.
+
 ### Milestones
 - [x] Show an alert after one minute.
 - [x] Show an alert after a given time.
@@ -29,6 +57,8 @@
 - As a developer I want to check the remaining time against a Date object rather than using setInterval to change runTime for more accuracy.
 - As a developer I want to add an easter egg: when a user clicks the emoji in the header, something random should happen.
 - As a user I want the clocks to account for hours (1:00:00).
+- As a user I want to update my settings: whether I want a timer modal or just a timer to the side of the list.
+- As a user I want to update my settings with what sounds or URLS it opens.
 
 ### User Stories
 - As a user I want to create a timer of a certain length. 

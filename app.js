@@ -64,7 +64,6 @@ Timer.prototype.countdown = function () {
 Timer.prototype.complete = function () {
     window.open( 'https://media.giphy.com/media/5Ff4rP8zrUNSo/giphy.gif' );
     this.stop();
-    this.end();
 }
 
 Timer.prototype.stop = function () {
@@ -94,29 +93,7 @@ Timer.prototype.addToDom = function () {
     timersUl.appendChild( timerLi );
 }
 
-function randomInt (min, max) {
-    return Math.floor( Math.random() * (max - min + 1) ) + min;
-}
 
-function twoPlaces ( num ) {
-    var numStr = num.toString();
-    return numStr.length === 2 ? numStr : '0' + numStr;
-}
-
-function randEmoji () {
-    var emojis = [ '🍉', '🥝', '🍍' ];
-    return emojis[randomInt(0,2)];
-}
-
-function isValidTime ( minutes, seconds ) {
-    var minNum = parseInt( minutes ); 
-    var secNum = parseInt( seconds );
-
-    var overZero = minNum + secNum !== 0;
-    var underSixty = secNum < 60;
-
-    return overZero && underSixty;
-}
 
 
 
@@ -167,13 +144,39 @@ modalCloseBtn.addEventListener( 'click', function ( event ) {
     }
 });
 
-var modalCloseBtn = document.getElementById( 'restart-timer' );
-modalCloseBtn.addEventListener( 'click', function ( event ) {
-    // document.getElementById( 'modal' ).classList.remove( 'show' );
-    // document.getElementById( 'countdown' ).innerHTML = '';
-
+var restartBtn = document.getElementById( 'restart-timer' );
+restartBtn.addEventListener( 'click', function ( event ) {
     if ( Timer.current ) { 
         Timer.current.stop();
         Timer.current.start();
     }
 });
+
+
+
+
+
+function randomInt (min, max) {
+    return Math.floor( Math.random() * (max - min + 1) ) + min;
+}
+
+function twoPlaces ( num ) {
+    var numStr = num.toString();
+    return numStr.length === 2 ? numStr : '0' + numStr;
+}
+
+function randEmoji () {
+    var emojis = [ '🍉', '🥝', '🍍' ];
+    return emojis[randomInt(0,2)];
+}
+
+function isValidTime ( minutes, seconds ) {
+    var minNum = parseInt( minutes ); 
+    var secNum = parseInt( seconds );
+
+    var overZero = minNum + secNum !== 0;
+    var underSixty = secNum < 60;
+
+    return overZero && underSixty;
+}
+
