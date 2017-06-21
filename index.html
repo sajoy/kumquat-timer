@@ -15,17 +15,28 @@
         </section>
         <header>
             <h1>Kumquat 🍊 Timer</h1>
+            <ol>
+                <li>Create a timer.</li>
+                <li>Timebox your life.</li>
+                <li><s>Profit.</s> Contribute to society.</li>
+            </ol>
         </header>
-        <ul id="timers">
-        </ul>
-        <form>
-            <fieldset>
-            <input id="minutes" class="clock" type="number" placeholder="XX" required>
-            <span class="clock">:</span>
-            <input id="seconds" class="clock" type="number" placeholder="XX" required>
-            </fieldset>
-            <button type="submit" title="create timer">🍊</button>
-        </form>
+        <section id="empty-state" class="show">
+            <p><strong>You're running out of time. Create a timer below.
+            </strong></p>
+        </section>
+        <section>
+            <ul id="timers">
+            </ul>
+            <form>
+                <fieldset>
+                <input id="minutes" class="clock" type="number" title="minutes" placeholder="XX" min="0" required>
+                <span class="clock">:</span>
+                <input id="seconds" class="clock" type="number" title="seconds" placeholder="XX" min="0" required>
+                </fieldset>
+                <button type="submit" title="create timer">🍊</button>
+            </form>
+        </section>
         <script src="app.js"></script>
     </body>
 </html>

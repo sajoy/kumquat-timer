@@ -29,18 +29,20 @@ button:hover {
     background-color: #FFEB3B;
 }
 
-#modal button {
-    background-color: inherit;
+.clock {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    font-weight: normal;
 }
 
 button:active, button:focus {
     outline: none;
 }
 
-form {
+header, section:not(#modal), form {
     width: fit-content;
     margin: 0 auto;
-}
+} 
 
 fieldset {
     display: inline-block;
@@ -67,8 +69,6 @@ input:active, input:focus {
 
 #timers {
     padding: 0;
-    width: fit-content;
-    margin: 0 auto;
 }
 
 #timers li {
@@ -81,13 +81,16 @@ input:active, input:focus {
     padding: 0 60px;
 }
 
-.clock {
-    font-family: 'Space Mono', monospace;
-    font-size: 2rem;
-    font-weight: normal;
+#empty-state {
+    display: none;
+}
+
+#empty-state.show {
+    display: block;
 }
 
 
+/*       modal styles       */
 #modal {
     display: none;
 
@@ -118,4 +121,14 @@ input:active, input:focus {
 
 #modal .clock {
     font-size: 8rem;
+}
+
+#modal button {
+    background-color: inherit;
+}
+
+@media only screen and ( min-width: 800px ) {
+    header {
+        margin-top: 10%;
+    }
 }
