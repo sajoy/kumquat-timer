@@ -11,11 +11,11 @@
 - [x] Allow user to set a temporary focus.
 - [kindof] Disallow multiple timers to run simultaneously.
 - [] Allow user to name the timer.
-- [] Show timer on creation.
+- [x] Show timer on creation.
 - [] Stylin': mobile first and responsive
     - [x] landing page timer list
     - [x] modal
-- [] Add empty state
+- [x] Add empty state
 
 - [] Deal with edgecases:
     - [x] 00:00 timer

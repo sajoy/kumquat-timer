@@ -44,6 +44,14 @@ header, section:not(#modal), form {
     margin: 0 auto;
 } 
 
+/*form {
+    opacity: .5;
+}
+
+form:hover {
+    opacity: 1; 
+}*/
+
 fieldset {
     display: inline-block;
     margin: 24px 0;

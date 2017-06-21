@@ -64,12 +64,16 @@ Timer.prototype.countdown = function () {
 Timer.prototype.complete = function () {
     window.open( 'https://media.giphy.com/media/5Ff4rP8zrUNSo/giphy.gif' );
     this.stop();
+    this.end();
 }
 
 Timer.prototype.stop = function () {
     console.log( this.name , ' is over!' );
-    Timer.current = null;
     clearInterval( this.currentTime );
+}
+
+Timer.prototype.end = function () {
+    Timer.current = null;
 }
 
 Timer.prototype.addToDom = function () {
@@ -159,5 +163,17 @@ modalCloseBtn.addEventListener( 'click', function ( event ) {
 
     if ( Timer.current ) { 
         Timer.current.stop();
+        Timer.current.end();
+    }
+});
+
+var modalCloseBtn = document.getElementById( 'restart-timer' );
+modalCloseBtn.addEventListener( 'click', function ( event ) {
+    // document.getElementById( 'modal' ).classList.remove( 'show' );
+    // document.getElementById( 'countdown' ).innerHTML = '';
+
+    if ( Timer.current ) { 
+        Timer.current.stop();
+        Timer.current.start();
     }
 });
