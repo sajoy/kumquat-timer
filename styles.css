@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    font-family: 'Inconsolata', monospace;
+    font-family:  'Space Mono', monospace;
 }
 
 header h1 {
@@ -27,6 +27,14 @@ button {
 
 button:hover {
     background-color: #FFEB3B;
+}
+
+#modal button {
+    background-color: inherit;
+}
+
+button:active, button:focus {
+    outline: none;
 }
 
 form {
@@ -82,12 +90,31 @@ input:active, input:focus {
 
 #modal {
     display: none;
+
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: orange;
+    font-size: 5rem;
+    color: white;
 }
 
 #modal.show {
     display: block;
     position: fixed;
-    height: 100%;
-    width: 100%;
-    background-color: orange;
+}
+
+#modal h1 {
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+#modal h1:focus {
+    outline: none;
+    
+}
+
+#modal .clock {
+    font-size: 8rem;
 }
