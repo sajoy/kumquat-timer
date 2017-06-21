@@ -1,9 +1,10 @@
 'use strict';
 
-function Timer ( name, length ) {
+function Timer ( name, minutes, seconds ) {
     this.name = name || this.randomName();
-    this.minutes = length / 60000;
-    this.totalSeconds = length / 1000;
+    this.minutes = twoPlaces( minutes );
+    this.seconds = twoPlaces( seconds );
+    this.totalTime = parseInt( this.minutes ) * 60 + parseInt( this.seconds );
 }
 
 Timer.all = [];
@@ -30,8 +31,8 @@ Timer.prototype.start = function () {
     console.log( this.name , ' is starting!' );
 
     this.clock.innerHTML = '<span id="minutes">' 
-                           + twoPlaces( this.minutes.toString() )
-                           + '</span>:<span>' + '00' + '</span>';
+                           + this.minutes
+                           + '</span>:<span>' + this.seconds + '</span>';
     
     this.countdown();
     Timer.current = this;
@@ -39,23 +40,28 @@ Timer.prototype.start = function () {
 
 Timer.prototype.countdown = function () {
     var currentTimer = this;
-    var runTime = currentTimer.totalSeconds;
+    var runTime = currentTimer.totalTime;
     var clock = currentTimer.clock;
 
     this.currentTime = setInterval( function () {
-        if ( runTime === 0 ) { currentTimer.stop(); }
+        runTime = runTime - 1;
+        if ( runTime === 0 ) { currentTimer.complete(); }
 
         var mins = Math.floor( runTime/60 );
         var seconds = runTime%60;
 
-        var secondsString = seconds === 60 ? '00' : twoPlaces( seconds.toString() );
-        var minutesString = twoPlaces( mins.toString() );
+        var secondsString = seconds === 60 ? '00' : twoPlaces( seconds );
+        var minutesString = twoPlaces( mins );
 
         clock.innerHTML = '<span id="minutes">' + minutesString + 
                                '</span>:<span>' + secondsString + '</span>';
 
-        runTime = runTime - 1;
     }, 1000 );
+}
+
+Timer.prototype.complete = function () {
+    window.open( 'https://media.giphy.com/media/5Ff4rP8zrUNSo/giphy.gif' );
+    this.stop();
 }
 
 Timer.prototype.stop = function () {
@@ -68,7 +74,8 @@ function randomInt (min, max) {
     return Math.floor( Math.random() * (max - min + 1) ) + min;
 }
 
-function twoPlaces ( numStr ) {
+function twoPlaces ( num ) {
+    var numStr = num.toString();
     return numStr.length === 2 ? numStr : '0' + numStr;
 }
 
@@ -82,13 +89,14 @@ var timersUl = document.getElementById( 'timers' );
 if ( localStorage.timers ) {
     var timers = JSON.parse( localStorage.timers );
     timers.forEach( function ( timer ) {
-        var timerObj = new Timer( timer.name, timer.totalSeconds * 1000 )
+        var timerObj = new Timer( timer.name, timer.minutes, timer.seconds )
         Timer.all.push( timerObj );
 
         var timerLi = document.createElement( 'li' );
 
         var nameHeader = document.createElement( 'h2' );
-        nameHeader.innerText = timer.name + ' (' + timer.minutes + ' minutes)';
+        nameHeader.innerText = timer.name + ' (' + twoPlaces( timer.minutes ) 
+                               + ':' + twoPlaces( timer.seconds ) + ')';
 
         var startBtn = document.createElement( 'button' );
         startBtn.setAttribute( 'type', 'submit' );
@@ -108,10 +116,10 @@ if ( localStorage.timers ) {
 var form = document.getElementsByTagName( 'form' )[0];
 form.addEventListener( 'submit', function ( event ) {
     event.preventDefault();
-    var minutes = document.getElementsByTagName( 'input' )[0].value;
-    var length = minutes * 60000;
+    var minutes = document.getElementById( 'minutes' ).value;
+    var seconds = document.getElementById( 'seconds' ).value;
     
-    var timer = new Timer( name, length );
+    var timer = new Timer( name, minutes, seconds );
     timer.save();
 });
 
