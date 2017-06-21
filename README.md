@@ -14,10 +14,11 @@
 - [] Show timer on creation.
 - [] Stylin': mobile first and responsive
     - [x] landing page timer list
+    - [x] modal
 - [] Add empty state
 
 - [] Deal with edgecases:
-    - [] 00:00 timer
+    - [x] 00:00 timer
     - [] over 60:00 timer ? or over 100:00 timer
 
 ### Stretch Goals
@@ -27,6 +28,7 @@
 - As a user I want to see the time remaining in the browser tab.
 - As a developer I want to check the remaining time against a Date object rather than using setInterval to change runTime for more accuracy.
 - As a developer I want to add an easter egg: when a user clicks the emoji in the header, something random should happen.
+- As a user I want the clocks to account for hours (1:00:00).
 
 ### User Stories
 - As a user I want to create a timer of a certain length. 

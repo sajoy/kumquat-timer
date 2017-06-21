@@ -123,6 +123,11 @@ form.addEventListener( 'submit', function ( event ) {
     var minutes = document.getElementById( 'minutes' ).value;
     var seconds = document.getElementById( 'seconds' ).value;
     
+    if ( parseInt( minutes ) + parseInt( seconds ) === 0 ) { 
+        alert( 'We need more time!' );
+        return;
+    }
+
     var timer = new Timer( name, minutes, seconds );
     timer.save();
 });

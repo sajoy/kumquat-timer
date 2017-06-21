@@ -7,8 +7,8 @@
     </head>
     <body>
         <section id="modal">
-            <h1 contenteditable="true">Focus on me</h1>
             <h1 id="countdown" class="clock"></h1>
+            <h1 contenteditable="true">Focus on me</h1>
             <button id="close-modal" type="submit" title="close timer">🛑</button>
             <button id="toggle-sound" type="submit" title="toggle ending sound">🎉</button>
             <button id="toggle-gif" type="submit" title="toggle ending gif">🎈</button>
@@ -20,9 +20,9 @@
         </ul>
         <form>
             <fieldset>
-            <input id="minutes" class="clock" type="text" placeholder="XX">
+            <input id="minutes" class="clock" type="number" placeholder="XX" required>
             <span class="clock">:</span>
-            <input id="seconds" class="clock" type="text" placeholder="XX">
+            <input id="seconds" class="clock" type="number" placeholder="XX" required>
             </fieldset>
             <button type="submit" title="create timer">🍊</button>
         </form>

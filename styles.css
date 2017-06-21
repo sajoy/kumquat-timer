@@ -98,6 +98,7 @@ input:active, input:focus {
     background-color: orange;
     font-size: 5rem;
     color: white;
+    overflow: auto;
 }
 
 #modal.show {
@@ -112,7 +113,7 @@ input:active, input:focus {
 
 #modal h1:focus {
     outline: none;
-    
+
 }
 
 #modal .clock {
