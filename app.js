@@ -98,6 +98,7 @@ Timer.prototype.addToDom = function () {
 
 
 var timersUl = document.getElementById( 'timers' );
+var collectingFruit;
 
 if ( localStorage.timers ) {
     document.getElementById( 'empty-state' ).classList.remove( 'show' );
@@ -152,6 +153,16 @@ restartBtn.addEventListener( 'click', function ( event ) {
     }
 });
 
+var kumquat = document.getElementById( 'surprise' );
+kumquat.addEventListener( 'click', function ( event ) {
+    if ( collectingFruit ) {
+        clearInterval( collectingFruit );
+        collectingFruit = false;
+    } else {
+        surprise();
+    }
+});
+
 
 
 
@@ -180,3 +191,15 @@ function isValidTime ( minutes, seconds ) {
     return overZero && underSixty;
 }
 
+function surprise () {
+    collectingFruit = setInterval( function () {
+        var fruitbowl = document.getElementById( 'fruit-bowl' );
+        fruitbowl.classList.add( 'show' );
+
+        var newEle = document.createElement( 'div' );
+        newEle.innerHTML = randEmoji();
+        newEle.style.left = randomInt(0, window.innerWidth) + 'px';
+
+        fruitbowl.appendChild( newEle );
+    }, 1000 );
+}
