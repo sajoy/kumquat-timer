@@ -15,6 +15,17 @@ header h1 {
         box-sizing: border-box;
 }
 
+header ul {
+    padding: 0;
+    /*margin: 0 auto;*/
+    width: fit-content;
+}
+
+header ul li {
+    list-style: none;
+    display: inline-block;
+}
+
 button {
     border: none;
     padding: 20px;
@@ -77,6 +88,13 @@ input:active, input:focus {
     border-bottom: dashed 3px lightgray;
 }
 
+#nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
 #timers {
     padding: 0;
 }
@@ -89,6 +107,10 @@ input:active, input:focus {
 #timers li h2 {
     display: inline-block;
     padding: 0 60px;
+}
+
+#about {
+    max-width: 500px;
 }
 
 #empty-state {
